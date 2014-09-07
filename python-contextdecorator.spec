@@ -18,6 +18,7 @@ License:        BSD
 URL:            https://code.google.com/p/contextdecorator
 # https://pypi.python.org/packages/source/c/contextdecorator/contextdecorator-0.10.0.tar.gz#md5=779973c0e9502c9fdc7add9628cbb58d
 Source0:        https://pypi.python.org/packages/source/c/contextdecorator/contextdecorator-%{version}.tar.gz
+# Ive asked upstream to include with no luck https://code.google.com/p/contextdecorator/issues/detail?id=3
 Patch0:         contextdec-lic.patch
 
 BuildRequires:  python2-devel python-setuptools
