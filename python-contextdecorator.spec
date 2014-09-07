@@ -8,16 +8,17 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
-Name:       python-contextdecorator
-Version:    0.10.0
-Release:    1%{?dist}
-Summary:    Create APIs that work as decorators and as context managers
+Name:           python-contextdecorator
+Version:        0.10.0
+Release:        2%{?dist}
+Summary:        Create APIs that work as decorators and as context managers
 
-Group:      Development/Languages
-License:    BSD
-URL:        https://code.google.com/p/contextdecorator
+Group:          Development/Languages
+License:        BSD
+URL:            https://code.google.com/p/contextdecorator
 # https://pypi.python.org/packages/source/c/contextdecorator/contextdecorator-0.10.0.tar.gz#md5=779973c0e9502c9fdc7add9628cbb58d
-Source0:    https://pypi.python.org/packages/source/c/contextdecorator/contextdecorator-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/source/c/contextdecorator/contextdecorator-%{version}.tar.gz
+Patch0:         contextdec-lic.patch
 
 BuildRequires:  python2-devel python-setuptools
 BuildArch:      noarch
@@ -43,6 +44,7 @@ context managers.
 
 %prep
 %setup -q -n contextdecorator-%{version}
+%patch0 -p1
 %if 0%{?_with_python3}
 rm -rf %{py3dir}
 cp -a . %{py3dir}
@@ -71,16 +73,19 @@ popd
 
 %files
 %defattr(-,root,root,-)
-%doc README.txt
+%doc README.txt LICENSE
 %{python_sitelib}/*
 
 %if 0%{?_with_python3}
 %files -n python3-contextdecorator
-%doc README.txt
+%doc README.txt LICENSE
 %{python3_sitelib}/*
 %endif
 
 
 %changelog
+* Sun Sep 7 2014 Micharl Rice <michael@michaelrice.org> - 0.10.0-2
+- Added license patch
+
 * Mon Sep 1 2014 Michael Rice <michael@michaelrice.org> - 0.10.0-1
 - Initial RPM build
